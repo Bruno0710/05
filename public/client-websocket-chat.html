@@ -1,0 +1,179 @@
+<!--
+ *  ULP - Eng Informática (2021-22)
+ *  Programação de Sistemas Distribuídos
+ *  DATA: 07-03-2022
+ *  Exemplo da aula:  /public/client-websocket-chat.html
+ *  cliente
+-->
+<!doctype html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Chat Prog Sistemas Distribuidos 2021-22</title>
+    <style>
+      body {
+        font-family: 'Lato', sans-serif;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+      }
+
+      label {
+        color: #333;
+      }
+
+      .btn-send {
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        width: 80%;
+        margin-left: 3px;
+      }
+      .help-block.with-errors {
+        color: #ff5050;
+        margin-top: 5px;
+
+      }
+
+      .card{
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    </style>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Pag_parque">
+    <meta property="og:type" content="website">
+  </head>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+  $(function () {
+    const ws = new WebSocket("ws://localhost:5085");
+    ws.onmessage = function(event) {
+      const msg = event.data;
+      $('#messages').append($('<li>').text(msg));
+      // ws.send(JSON.stringify('mensagem recebida'));
+    };
+
+    ws.onerror = function(event){
+      ws.close();
+      console.log(`Error ${event}`);
+    }
+
+    // -----------------------------
+
+    $('form').submit(function() {
+      const msg = $('#m').val();
+      $('#messages').append($('<li>').text(msg));
+      ws.send(msg);
+      $('#m').val(); // limpar a caixa de texto
+    });
+  });
+  </script>
+
+  <body>
+  <div class="container">]
+    <div class=" text-center mt-5 ">
+
+      <h1 >Bootstrap Contact Form</h1>
+
+
+    </div>
+
+
+    <div class="row ">
+      <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-light">
+          <div class="card-body bg-light">
+
+            <div class = "container">
+              <form id="contact-form" role="form">
+
+
+
+                <div class="controls">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label >Parque</label>
+                        <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                          <option value="" selected disabled>Parque AAA</option>
+                          <option >Request Invoice for order</option>
+                          <option >Request order status</option>
+                          <option >Haven't received cashback yet</option>
+                          <option >Other</option>
+                        </select>
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label >Parque</label>
+                        <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                          <option value="" selected disabled>Parque AAA</option>
+                          <option >Request Invoice for order</option>
+                          <option >Request order status</option>
+                          <option >Haven't received cashback yet</option>
+                          <option >Other</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_email">Matricula</label>
+                        <input id="form_email" type="email" name="email" class="form-control" placeholder="AA-01-BB" required="required" data-error="Valid email is required.">
+
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_need">Matricula</label>
+                        <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                          <option value="" selected disabled>AA-01-BB</option>
+                          <option >Request Invoice for order</option>
+                          <option >Request order status</option>
+                          <option >Haven't received cashback yet</option>
+                          <option >Other</option>
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                    <div class="col-md-12">
+
+                      <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                            " value="Registo Entrada" >
+
+                      <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                            " value="Registo Saída" >
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.8 -->
+
+      </div>
+      <!-- /.row-->
+
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

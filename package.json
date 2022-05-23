@@ -1,0 +1,15 @@
+{
+  "name": "projeto_aula04_websocket",
+  "version": "1.0.0",
+  "description": "aula 04 - 07/março/2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ULP - Eng Informática (2021-22) Programação de Sistemas Distribuídos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.2.3"
+  }
+}
